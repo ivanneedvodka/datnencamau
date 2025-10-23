@@ -30,6 +30,8 @@
       --radius:14px;
       --shadow:0 12px 24px -16px rgba(0,0,0,.35);
       --container:1200px;
+      --rail: clamp(28px, 6vw, 56px);
+      --rail-gap: clamp(22px, 4vw, 48px);
     }
     *{box-sizing:border-box}
     html,body{height:100%}
@@ -123,17 +125,32 @@
     /* Timeline */
     .timeline{background:var(--primary); padding:clamp(40px,7vw,70px) 0}
     .timeline .title{color:#fff; text-align:center}
-    .timeline .line{position:relative; margin:32px auto 0; max-width:860px; padding-left:clamp(60px,10vw,120px)}
+    .timeline .line{position:relative; margin:32px auto 0; max-width:860px; padding-left:calc(var(--rail) + var(--rail-gap))}
     .timeline .line::before{
-      content:""; position:absolute; left:clamp(22px,6vw,50px); top:0; bottom:0; width:2px; background:rgba(255,255,255,.7);
+      content:""; position:absolute; left:var(--rail); top:0; bottom:0; width:2px; background:rgba(255,255,255,.7);
     }
     .step{position:relative; margin:clamp(18px,3vw,28px) 0}
     .step::before{
-      content:""; position:absolute; left:clamp(14px,5.2vw,42px); top:8px;
-      width:22px; height:22px; border:6px solid var(--danger); background:#fff; border-radius:999px;
+      content:""; position:absolute; left:var(--rail); top:8px;
+      width:20px; height:20px; border:6px solid var(--danger); background:#fff; border-radius:50%; z-index:0;
     }
-    .step .label{display:inline-block; background:var(--danger); color:#fff; padding:10px 16px; border-radius:999px; font-weight:800}
-    .step .box{background:#fff; border-radius:12px; padding:clamp(14px,2.2vw,18px); margin-top:10px; box-shadow:var(--shadow)}
+    .step .label{
+      position:relative;
+      z-index:1;                
+      display:inline-block;
+      background:var(--danger);
+      color:#fff;
+      padding:10px 16px;
+      border-radius:999px;
+      font-weight:800;
+    }
+    .step .box{
+      background:#fff;
+      border-radius:12px;
+      padding:clamp(14px,2.2vw,18px);
+      margin-top:10px;
+      box-shadow:0 12px 24px -16px rgba(0,0,0,.35);
+    }
     .step .box p{margin:0; overflow-wrap:anywhere}
 
     /* CTA */
